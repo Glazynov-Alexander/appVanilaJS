@@ -1,0 +1,54 @@
+body {
+  width: 640px;
+  margin: auto;
+  margin-top: 299px;
+}
+
+.titlePage {
+  margin: 0;
+  margin-bottom: 15px;
+  font-weight: normal;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.task {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.task div {
+  border: 2px solid black;
+}
+
+.task div:first-child {
+  margin-right: 20px;
+  width: 50px;
+  height: 50px;
+}
+
+.task div p {
+  margin: 0;
+  margin-right: 220px;
+  margin-left: 20px;
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+.task div input {
+  margin-left: 20px;
+  margin-top: 20px;
+}
+.solidTask {
+  width: 400px;
+}
+.fieldColors div {
+  display: flex;
+  justify-content: space-between;
+}
+.blockColor {
+  width: 40px;
+  height: 40px;
+}
+.borderColor {
+  border: 4px solid gray;
+}
