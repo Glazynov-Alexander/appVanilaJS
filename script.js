@@ -1,8 +1,7 @@
 let taskList = document.querySelector(".taskList");
 
 let textInput = document.querySelector(".textTask");
-let colors = document.querySelector(".colors");
-let addTask = document.querySelector(".addTask");
+let colors = document.querySelector(".fieldColors");
 
 let tasks = [];
 let massivColors = [, "blue", "#ffa400", "green", "red", "#00d669", "#530cff"];
@@ -15,7 +14,6 @@ let renderTaskList = () => {
       tasks = JSON.parse(localTasks);
       // return renderTaskList();
     }
-    console.log(localTasks);
   }
 
   list.innerHTML = tasks
@@ -23,13 +21,13 @@ let renderTaskList = () => {
       if (el.checkeds) {
         return `
       <div id=${el.id} class="task">
-      <div style="background:gray"><input checked id=${el.id}  type="checkbox" class="checkBox"/></div>
-      <div class="solidTask" style="background:gray"><p>${el.newText}</p></div>
+      <div style="background: #ccc " class="blockCheckbox"><input checked id=${el.id}  type="checkbox" class="checkBox"/></div>
+      <div class="solidTask" style="background: #ccc "><p>${el.newText}</p></div>
       </div>`;
       }
       return `
     <div id=${el.id} class="task">
-    <div style="background:${el.color}"><input id=${el.id}  type="checkbox" class="checkBox"/></div>
+    <div style="background:${el.color}" class="blockCheckbox"><input id=${el.id}  type="checkbox" class="checkBox"/></div>
     <div class="solidTask" style="background:${el.color}"><p>${el.newText}</p></div>
     </div>`;
     })
@@ -40,20 +38,22 @@ let renderTaskList = () => {
 renderTaskList();
 
 let collig = document.createElement("div");
+collig.classList.add("colors");
 let idColor = 1;
 collig.innerHTML = massivColors
   .map((el) => {
     return `
     <div class="blockColor" id="${idColor++}" style="background:${el}"></div>
+    
   `;
   })
   .join("");
-
 let idColosdadasd = 0;
 
 let selectedTd;
 collig.onclick = function (event) {
   let td = event.target.closest("DIV");
+  if (!td.id) return;
   if (!td) return;
   if (!collig.contains(td)) return;
   highlight(td);
@@ -68,20 +68,33 @@ function highlight(td) {
   selectedTd.classList.add("borderColor");
 }
 
+collig.innerHTML += '<button class="addTask">Add</button>';
 colors.appendChild(collig);
 
-let i = 1;
+let i = 0;
 let checkBox;
-
+function name() {
+  let get = localStorage.getItem("tasks");
+  if (get) {
+    let idLocal = JSON.parse(get);
+    console.log(idLocal);
+    idLocal.slice(-1)[0].id + 1;
+    i = idLocal.slice(-1)[0].id;
+  }
+  i++;
+}
+let addTask = colors.querySelector(".addTask");
 addTask.addEventListener("click", (e) => {
   if (textInput.value && idColosdadasd !== 0) {
+    name();
     let newTask = {
       id: i,
       color: massivColors[idColosdadasd],
       newText: textInput.value,
       checkeds: false,
     };
-    i++;
+    console.log(newTask);
+    // i++;
     tasks.push(newTask);
     localStorage.setItem("tasks", JSON.stringify(tasks));
     renderTaskList();
@@ -92,24 +105,16 @@ function switchTask(par) {
     element.addEventListener("change", (checkInput) => {
       let target = checkInput.target;
       if (target.tagName === "INPUT") {
-        target.checked ? getTargetTrue(target.id) : getTargetFalse(target.id);
+        target.checked
+          ? getTarget(target.id, true)
+          : getTarget(target.id, false);
+        localStorage.setItem("tasks", JSON.stringify(tasks));
       }
 
-      function getTargetFalse(id) {
+      function getTarget(id, boolem) {
         return tasks.map((elem) => {
           if (elem.id === +id) {
-            elem.checkeds = false;
-            // localStorage.setItem("tasks", JSON.stringify(tasks));
-            renderTaskList();
-          }
-        });
-      }
-
-      function getTargetTrue(id) {
-        return tasks.map((el) => {
-          if (el.id === +id) {
-            el.checkeds = true;
-            // localStorage.setItem("tasks", JSON.stringify(tasks));
+            elem.checkeds = boolem;
             renderTaskList();
           }
         });

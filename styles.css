@@ -4,6 +4,7 @@ body {
   margin-top: 299px;
 }
 
+
 .titlePage {
   margin: 0;
   margin-bottom: 15px;
@@ -13,42 +14,89 @@ body {
 }
 .task {
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
-
-.task div {
-  border: 2px solid black;
-}
-
-.task div:first-child {
-  margin-right: 20px;
+.blockCheckbox {
   width: 50px;
   height: 50px;
 }
+.blockCheckbox input {
+  margin: 20px ;
+}
+.task div {
+  border: 1px solid rgba(238, 135, 135, 0);
+}
+
+.task div:first-child {
+  margin-right: 5px;
+}
 
 .task div p {
-  margin: 0;
-  margin-right: 220px;
-  margin-left: 20px;
-  margin-top: 15px;
-  font-size: 18px;
+  margin: 15px 220px 0 20px;
+  font-size: 20px;
 }
 
-.task div input {
-  margin-left: 20px;
-  margin-top: 20px;
-}
+
 .solidTask {
-  width: 400px;
+  width: 100%;
+  color: aliceblue;
 }
-.fieldColors div {
+.fieldColors {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.fieldColors {
+  margin-bottom: 550px;
+  height: 50px;
+  border: 2px solid #ccc;
+  border-radius: 3px;
+}
+.textTask {
+  border: 0;
+  /* border-left: 3px solid #ccc; */
+  margin-left: 20px;
+  width: 300px;
+  height: 25px;
+  color: rgb(80, 79, 79);
+  font-size: 20px;
+  outline: none;
 }
 .blockColor {
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
+}
+.blockColor:last-of-type {
+  margin-right: 20px;
+}
+.blockColor:first-child {
+  margin-left: 0;
+}
+.colors {
+  display: flex;
+  cursor: pointer;
+  margin-top: 15px;
 }
 .borderColor {
-  border: 4px solid gray;
+  border: 4px solid rgb(253, 209, 10);
+}
+
+
+.addTask {
+  width: 50px;
+  height: 35px;
+  border: 0;
+  border-radius: 3px;
+  background-color: rgb(8, 206, 189);
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  top: -7px;
+  right: 10px;
+}
+
+.addTask:active {
+  background: rgb(4, 111, 119);
 }
