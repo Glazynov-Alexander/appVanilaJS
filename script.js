@@ -12,7 +12,6 @@ let renderTaskList = () => {
     let localTasks = localStorage.getItem("tasks");
     if (localTasks !== null) {
       tasks = JSON.parse(localTasks);
-      // return renderTaskList();
     }
   }
 
@@ -94,7 +93,6 @@ addTask.addEventListener("click", (e) => {
       checkeds: false,
     };
     console.log(newTask);
-    // i++;
     tasks.push(newTask);
     localStorage.setItem("tasks", JSON.stringify(tasks));
     renderTaskList();
@@ -127,6 +125,5 @@ taskList.addEventListener("click", (e) => {
   checkBox = [...taskList.querySelectorAll("input[type='checkbox']")];
   if (taskList.length !== 0) {
     switchTask(checkBox);
-    // localStorage.setItem("tasks", JSON.stringify(tasks));
   }
 });
