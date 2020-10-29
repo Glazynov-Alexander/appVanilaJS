@@ -20,8 +20,8 @@ let renderTaskList = () => {
       if (el.checkeds) {
         return `
       <div id=${el.id} class="task">
-      <div style="background: #ccc " class="blockCheckbox"><input checked id=${el.id}  type="checkbox" class="checkBox"/></div>
-      <div class="solidTask" style="background: #ccc "><p>${el.newText}</p></div>
+      <div style="background: #ccc " class="blockCheckbox"><input  checked id=${el.id}  type="checkbox" class="checkBox"/></div>
+      <div class="solidTask" style="background: #ccc "><p style="text-decoration-line: line-through">${el.newText}</p></div>
       </div>`;
       }
       return `
@@ -76,7 +76,6 @@ function name() {
   let get = localStorage.getItem("tasks");
   if (get) {
     let idLocal = JSON.parse(get);
-    console.log(idLocal);
     idLocal.slice(-1)[0].id + 1;
     i = idLocal.slice(-1)[0].id;
   }
@@ -92,7 +91,6 @@ addTask.addEventListener("click", (e) => {
       newText: textInput.value,
       checkeds: false,
     };
-    console.log(newTask);
     tasks.push(newTask);
     localStorage.setItem("tasks", JSON.stringify(tasks));
     renderTaskList();
